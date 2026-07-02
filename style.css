@@ -1,6 +1,12 @@
+
+
 /* =========================
    RESET
 ========================= */
+
+html {
+    scroll-behavior: smooth;
+}
 
 * {
     margin: 0;
@@ -32,12 +38,31 @@ body {
    HEADER
 ========================= */
 
+
 header {
     position: sticky;
     top: 0;
-    background: white;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
     z-index: 1000;
+
+    background: rgba(255, 255, 255, 1);
+
+    transition:
+        background 0.3s ease,
+        backdrop-filter 0.3s ease,
+        box-shadow 0.3s ease;
+
+    -webkit-backdrop-filter: blur(0);
+    backdrop-filter: blur(0);
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
+}
+
+header.scrolled {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,255,255,.4);
+    box-shadow: 0 8px 30px rgba(0,0,0,.08);
 }
 
 .nav {
@@ -47,10 +72,16 @@ header {
     padding: 8px 0;
 }
 
+.menu-direita {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
 /* Logo */
 
 .nav img {
-       width: 150px;
+    width: 150px;
     height: auto;
 }
 
@@ -75,10 +106,15 @@ nav a:hover {
 /* =========================
    HERO
 ========================= */
-
 .hero {
-    background: white;
-    padding: 80px 0;
+    background: linear-gradient(180deg, #ffffff, #f4f5f7);
+    min-height: 85vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 20px;
 }
 
 .ajuda {
@@ -87,51 +123,29 @@ nav a:hover {
     text-align: center;
 }
 
-.hero h2 {
-    font-size:3rem;
-
-    font-weight:800;
-
-    line-height:1.05;
-
-    margin-bottom:20px;
-
-    color: #8b1e3f;
-   
-}
-
-.hero p {
-    font-size:1.1rem;
-
-    line-height:1.7;
-
-    margin-bottom:30px;
-
-    color: #555;
-    
-}
-
-.hero {
-    background: linear-gradient(180deg, #ffffff, #f4f5f7);
-    min-height: 85vh;
-
-    display: flex;
-    align-items: center;
-}
-
-.hero {
-    min-height: 100vh; /* ocupa a tela inteira */
-    display: flex;
-    align-items: center; /* centraliza verticalmente */
-    justify-content: center; /* centraliza horizontalmente */
-    padding: 0 20px; /* evita colar nas laterais */
-}
-
 .hero .ajuda {
     max-width: 700px;
     text-align: center;
 }
-/* Botão */
+
+.hero h2 {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.05;
+    margin-bottom: 20px;
+    color: #8b1e3f;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 30px;
+    color: #555;
+}
+
+/* =========================
+   BOTÕES
+========================= */
 
 .btn {
     display: inline-block;
@@ -149,8 +163,7 @@ nav a:hover {
 }
 
 .btn-ajuda {
-
-     text-decoration: none;
+    text-decoration: none;
     background: #a81f4d;
     color: white;
 
@@ -158,20 +171,18 @@ nav a:hover {
     border-radius: 14px;
 
     font-weight: 700;
+    transition: .3s;
 
-    transition: 0.3s;
-
-    box-shadow: 0 10px 25px rgba(77, 12, 12, 0.25);
+    box-shadow: 0 10px 25px rgba(77, 12, 12, .25);
 }
 
 .btn-ajuda:hover {
-
-     transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 15px 35px rgba(112, 20, 20, 0.35);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(112, 20, 20, .35);
 }
 
 .btn-procure {
- text-decoration: none;
+    text-decoration: none;
     background: #a81f4d;
     color: white;
 
@@ -179,21 +190,16 @@ nav a:hover {
     border-radius: 14px;
 
     font-weight: 700;
+    transition: .3s;
 
-    transition: 0.3s;
-
-    box-shadow: 0 10px 25px rgba(110, 17, 17, 0.25);
-
+    box-shadow: 0 10px 25px rgba(110, 17, 17, .25);
 }
 
 .btn-procure:hover {
     transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 15px 35px rgba(128, 21, 21, 0.35);
+    box-shadow: 0 15px 35px rgba(128, 21, 21, .35);
 }
 
-
-
-   
 /* =========================
    SEÇÕES
 ========================= */
@@ -222,8 +228,18 @@ section h2 {
     background: white;
     padding: 25px;
     border-radius: 15px;
+
     box-shadow: 0 5px 15px rgba(0, 0, 0, .08);
-    transition: .3s;
+
+    transition: all .7s ease;
+
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.card.aparecer {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .card:hover {
@@ -261,36 +277,28 @@ footer {
     padding: 40px 20px;
 }
 
-footer p,
-footer h3 {
+footer h3,
+footer p {
     color: white;
 }
 
-
-/*TEXTOS*/
+/* =========================
+   TEXTOS DAS SEÇÕES
+========================= */
 
 .container h2 {
-
-    font-size:3rem;
-
-    font-weight:500;
-
-    line-height:1.05;
-
-    margin-bottom:20px;
-
+    font-size: 3rem;
+    font-weight: 500;
+    line-height: 1.05;
+    margin-bottom: 20px;
     color: #8b1e3f;
 }
 
 .container p {
-    font-size:1.1rem;
-
-    line-height:1.7;
-
-    margin-bottom:30px;
-
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 30px;
     color: #555;
-
 }
 
 /* =========================
@@ -301,12 +309,19 @@ footer h3 {
 
     .nav {
         flex-direction: column;
-        gap: 20px;
+        gap: 15px;
+        padding: 12px 0;
     }
 
     nav {
+        flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
+        gap: 12px 20px;
+    }
+
+    nav a {
+        font-size: 14px;
     }
 
     .cards {
@@ -318,7 +333,7 @@ footer h3 {
     }
 
     .nav img {
-        width: 180px;
+        width: 140px;
     }
 }
 
@@ -328,9 +343,19 @@ footer h3 {
         grid-template-columns: 1fr;
     }
 
+    .menu-direita {
+        gap: 12px;
+    }
+
     nav {
-        flex-direction: column;
-        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px 14px;
+    }
+
+    nav a {
+        font-size: 13px;
     }
 
     .hero h2 {
@@ -342,11 +367,16 @@ footer h3 {
     }
 
     .nav img {
-        width: 150px;
+        width: 130px;
     }
 
     .btn {
         width: 100%;
         text-align: center;
+    }
+
+    .btn-ajuda {
+        padding: 8px 18px;
+        font-size: 13px;
     }
 }

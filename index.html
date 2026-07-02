@@ -22,19 +22,22 @@
     <header>
         <div class="container nav">
             <img src="img/logovozsegura.png" alt="Logo Voz Segura" class="logo">
+<div class="menu-direita">
 
-            <nav>
-                <a href="#sobre">Sobre</a>
-                <a href="#tipos">Tipos</a>
-                <a href="#ajuda">Ajuda</a>
-                <a href="#contato">Contato</a>
-            </nav>
+    <nav>
+        <a href="#sobre">Sobre</a>
+        <a href="#tipos">Tipos</a>
+        <a href="#ajuda">Ajuda</a>
+        <a href="#contato">Contato</a>
+    </nav>
 
-            <a href="https://www.gov.br/mulheres/pt-br/ligue180"
-               class="btn-ajuda"
-               target="_blank">
-                AJUDA
-            </a>
+    <a href="https://www.gov.br/mulheres/pt-br/ligue180"
+       class="btn-ajuda"
+       target="_blank">
+        AJUDA
+    </a>
+
+</div>
         </div>
     </header>
 
@@ -124,6 +127,36 @@
             <p>© 2026 Voz Segura - Todos os direitos reservados.</p>
         </div>
     </footer>
+
+    <script>
+window.addEventListener("scroll", () => {
+    const header = document.querySelector("header");
+
+    if (window.scrollY > 50) {
+        header.classList.add("scrolled");
+    } else {
+        header.classList.remove("scrolled");
+    }
+});
+
+const cards = document.querySelectorAll(".card");
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+
+        if (entry.isIntersecting) {
+            entry.target.classList.add("aparecer");
+        }
+
+    });
+}, {
+    threshold: 0.2
+});
+
+cards.forEach((card) => {
+    observer.observe(card);
+});
+</script>
 
 </body>
 
